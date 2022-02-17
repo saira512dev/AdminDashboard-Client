@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import { themeSettings } from "./theme";
 import  Dashboard  from "./scenes/dashboard";
+import  LogIn  from "./logIn";
 import  Layout  from "./scenes/layout";
 import  Products  from "./scenes/Products";
 import  Customers  from "./scenes/Customers";
@@ -25,8 +26,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes >
+          <Route path="/" element={<LogIn />} />
           <Route element={<Layout />}>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/products" element={<Products />} />
             <Route path="/customers" element={<Customers />} />
