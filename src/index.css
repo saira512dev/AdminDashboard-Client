@@ -7,6 +7,15 @@
     font-family: "Inter", sans-serif;
   }
 
+  /* .MuiInputBase-input  {
+    background-color: beige;
+    color: black
+  }
+  
+  .MuiTextField-root {
+    background: beige;
+    color: black
+  } */
   ::-webkit-scrollbar {
     width: 10px;
   }
