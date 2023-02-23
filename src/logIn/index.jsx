@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { useState } from "react";
 import FlexBetween from "../components/FlexBetween";
 import Header from "../components/Header";
 import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 import {
   DownloadOutlined,
   Email,
@@ -18,18 +20,28 @@ import {
   useMediaQuery,
   Link,
   Grid,
-  TextField
+  TextField,
 } from "@mui/material";
-
 
 import { themeSettings } from '../theme';
 
-function Dashboard() {
+const Login = () => {
+// States for registration
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+
+  // Handling the email change
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  // Handling the password change
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
   const theme = useTheme()
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
-
-  
 
   return (
     <Box m="1.5rem 2rem" sx={{
@@ -38,14 +50,15 @@ function Dashboard() {
         alignItems: "center",
         height: "100%",
     }}>
-        <Box  sx={{
+        <Box  pt="2rem" sx={{
             backgroundColor: theme.palette.background.alt,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            borderRadius: "0.2rem"
         }}>
-        <Header title="SIGN IN" subtitle="Sign In to your dashboard" />
+        <Header title="WELCOME" subtitle="Sign In to your dashboard" />
         <Box
           sx={{
             marginTop: 8,
@@ -54,7 +67,7 @@ function Dashboard() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'theme.palette.secondary' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -66,25 +79,25 @@ function Dashboard() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  //onChange={handleEmail}
+                  onChange={handleEmail}
                   required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
+                  variant="filled"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                 // onChange={handlePassword}
+                 onChange={handlePassword}
                   required
                   fullWidth
                   name="password"
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="new-password"
+                  variant="filled"
                 />
               </Grid>
             </Grid>
@@ -93,18 +106,15 @@ function Dashboard() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, background: theme.palette.primary.main}}
             >
               Sign In
             </Button>
           </Box>
         </Box>
         </Box>
-      
-          
-
     </Box>
   )
 }
 
-export default Dashboard
+export default Login
