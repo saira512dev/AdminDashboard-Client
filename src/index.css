@@ -7,15 +7,35 @@
     font-family: "Inter", sans-serif;
   }
 
-  /* .MuiInputBase-input  {
-    background-color: beige;
+/*   
+  .MuiInputBase-root  {
+    background: #21295c !important;
     color: black
   }
-  
-  .MuiTextField-root {
-    background: beige;
+
+  .MuiOutlinedInput-root  {
+    background: #21295c !important;
     color: black
-  } */
+  }
+
+  .MuiOutlinedInput-fullWidth  {
+    background: #21295c !important;
+    color: black
+  }
+
+  .css-hnc7so-MuiInputBase-root-MuiOutlinedInput-root {
+    background: #21295c !important;
+  }
+ 
+   .MuiInputBase-colorPrimary {
+    background: #21295c !important;
+  }
+
+  .MuiInputBase-formControl {
+    background: #21295c !important;
+  }
+   */
+  
   ::-webkit-scrollbar {
     width: 10px;
   }
