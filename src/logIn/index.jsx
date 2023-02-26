@@ -90,9 +90,9 @@ const Login = () => {
               <Grid item xs={12}>
                 <TextField
                   inputProps={{
-                    autocomplete: "new-email",
+                    autoComplete: "new-email",
                     form: {
-                      autocomplete: "off",
+                      autoComplete: "off",
                     },
                   }}
                   onChange={handleEmail}
@@ -121,7 +121,9 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, background: theme.palette.primary.main }}
+              sx={{ mt: 3, mb: 2, p: "0.5rem 0", background: theme.palette.primary[400],
+                "&:hover": { backgroundColor: theme.palette.primary[300]} 
+                  }}
             >
               Sign In
             </Button>
