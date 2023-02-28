@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FlexBetween from "../components/FlexBetween";
 import Header from "../components/Header";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Alert from '@mui/material/Alert';
+// import API_URL from '../config/config'
 
 import {
   DownloadOutlined,
@@ -26,9 +29,15 @@ import {
 import { themeSettings } from "../theme";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   // States for registration
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // States for checking the errors
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Handling the email change
   const handleEmail = (e) => {
@@ -40,6 +49,50 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+  const user = {
+    email,
+    password,
+  };
+
+  console.log(user);
+  // Handling the form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // if (email === "" || password === "") {
+    //   setError(true);
+    //   setErrorMessage("Please fill all the fields");
+    //   return;
+    // } else {
+    //   const response = await fetch(`${API_URL}/login`, {
+    //     method: "POST",
+    //     withCredentials: true,
+    //     credentials: 'include',
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(user),
+    //   });
+    //   const data = await response.json();
+    //   console.log(data);
+    //   if (data.error) {
+    //     setError(true);
+    //     setErrorMessage(data.error);
+    //   } else {
+    //     setError(false);
+    //     console.log("loggedIn");
+    //     localStorage.setItem("VoloLoggedIn", true);
+    //     localStorage.setItem("VoloUser", JSON.stringify(data));
+    //     navigate("/dashboard");
+    //   }
+    // }
+  }
+
+  const DisplayErrorMessage = () => {
+    return (
+
+       error ?  <Alert severity="error">{errorMessage}</Alert> : ""
+    );
+  };
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
 
@@ -53,6 +106,7 @@ const Login = () => {
         height: "100%",
       }}
     >
+      <DisplayErrorMessage />
       <Box
         pt="2rem"
         sx={{
