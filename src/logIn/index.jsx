@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Alert from '@mui/material/Alert';
-// import API_URL from '../config/config'
+import API_URL from '../config/config'
 
 import {
   DownloadOutlined,
