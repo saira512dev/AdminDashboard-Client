@@ -58,11 +58,12 @@ const Login = () => {
   // Handling the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (email === "" || password === "") {
-    //   setError(true);
-    //   setErrorMessage("Please fill all the fields");
-    //   return;
-    // } else {
+    if (email === "" || password === "") {
+      setError(true);
+      setErrorMessage("Please fill all the fields");
+      return;
+    } else {
+      console.log("DONE")
     //   const response = await fetch(`${API_URL}/login`, {
     //     method: "POST",
     //     withCredentials: true,
@@ -84,12 +85,11 @@ const Login = () => {
     //     localStorage.setItem("VoloUser", JSON.stringify(data));
     //     navigate("/dashboard");
     //   }
-    // }
+    }
   }
 
   const DisplayErrorMessage = () => {
     return (
-
        error ?  <Alert severity="error">{errorMessage}</Alert> : ""
     );
   };
@@ -103,7 +103,9 @@ const Login = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "column",
         height: "100%",
+        gap: "3rem"
       }}
     >
       <DisplayErrorMessage />
@@ -171,7 +173,7 @@ const Login = () => {
               </Grid>
             </Grid>
             <Button
-              //onClick={handleSubmit}
+              onClick={handleSubmit}
               type="submit"
               fullWidth
               variant="contained"
