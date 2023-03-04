@@ -1,26 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FlexBetween from "../components/FlexBetween";
 import Header from "../components/Header";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Alert from '@mui/material/Alert';
 import API_URL from '../config/config'
-
-import {
-  DownloadOutlined,
-  Email,
-  PointOfSale,
-  PersonAdd,
-  Traffic,
-} from "@mui/icons-material";
 import {
   Box,
   Button,
   Typography,
   useTheme,
-  useMediaQuery,
   Link,
   Grid,
   TextField,
@@ -94,7 +84,6 @@ const Login = () => {
     );
   };
   const theme = useTheme();
-  const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
 
   return (
     <Box
