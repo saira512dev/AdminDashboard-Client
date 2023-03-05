@@ -80,7 +80,12 @@ const Login = () => {
 
   const DisplayErrorMessage = () => {
     return (
-       error ?  <Alert severity="error">{errorMessage}</Alert> : ""
+       error ?  <Alert severity="error" sx={{ background: "white",
+        color:"black",
+        fontWeight: "bold"
+        }}>
+          {errorMessage}
+        </Alert> : ""
     );
   };
   const theme = useTheme();
