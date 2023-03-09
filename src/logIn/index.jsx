@@ -5,7 +5,8 @@ import Header from "../components/Header";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Alert from '@mui/material/Alert';
-import API_URL from '../config/config'
+import API_URL from '../config/config';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import {
   Box,
   Button,
@@ -54,27 +55,27 @@ const Login = () => {
       return;
     } else {
       console.log("DONE")
-    //   const response = await fetch(`${API_URL}/login`, {
-    //     method: "POST",
-    //     withCredentials: true,
-    //     credentials: 'include',
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(user),
-    //   });
-    //   const data = await response.json();
-    //   console.log(data);
-    //   if (data.error) {
-    //     setError(true);
-    //     setErrorMessage(data.error);
-    //   } else {
-    //     setError(false);
-    //     console.log("loggedIn");
-    //     localStorage.setItem("VoloLoggedIn", true);
-    //     localStorage.setItem("VoloUser", JSON.stringify(data));
-    //     navigate("/dashboard");
-    //   }
+      const response = await fetch(`${API_URL}/general/login`, {
+        method: "POST",
+        withCredentials: true,
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.error) {
+        setError(true);
+        setErrorMessage(data.error);
+      } else {
+        setError(false);
+        console.log("loggedIn");
+        // localStorage.setItem("VoloLoggedIn", true);
+        localStorage.setItem("DashBoardUser", JSON.stringify(data));
+        navigate("/dashboard");
+      }
     }
   }
 
@@ -86,6 +87,14 @@ const Login = () => {
         }}>
           {errorMessage}
         </Alert> : ""
+    );
+  };
+
+  const DisplayCredentials = () => {
+    return (
+        <Alert severity="success">FOR TESTING PURPOSES USE
+        Email: swelbeck12@ycombinator.com, Password: password
+        </Alert> 
     );
   };
   const theme = useTheme();
@@ -178,6 +187,7 @@ const Login = () => {
               Sign In
             </Button>
           </Box>
+          <DisplayCredentials />
         </Box>
       </Box>
     </Box>
