@@ -7,11 +7,13 @@ import {
     SettingsOutlined,
     ArrowDropDownOutlined,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 import { useDispatch  } from "react-redux";
 import { setMode } from "../state";
 import profileImage from "../assets/profile.png";
 import { AppBar, useTheme, Toolbar, IconButton, InputBase, Button,Box, Typography, Menu, MenuItem} from "@mui/material"
+import API_URL from '../config/config'
 
 const Navbar = ({
     isSidebarOpen,
@@ -20,12 +22,25 @@ const Navbar = ({
     }) => {
     const dispatch = useDispatch();
     const theme = useTheme()
+    const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const isOpen = Boolean(anchorEl);
     const handleClick = event => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null)
-
+    const handleLogout = () => {
+        const response = fetch(`${API_URL}/logout`, {
+            method: "GET",
+            withCredentials: true,
+            credentials: 'include',
+            headers: {
+            "Content-Type": "application/json",
+            },
+        });
+        localStorage.removeItem("DashBoardUser");
+        navigate("/");
+    };
+    
     return (
     <AppBar sx = {{ 
         position:"static",
@@ -94,7 +109,7 @@ const Navbar = ({
                         />
                     </Button>
                     <Menu anchorEl={anchorEl} open={isOpen} onClose={handleClose} anchorOrigin={{ vertical: "bottom", horizontal: "center"}} >
-                        <MenuItem onClick={handleClose}>Log Out</MenuItem>
+                        <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                     </Menu>
                 </FlexBetween>
             </FlexBetween>
