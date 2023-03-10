@@ -72,7 +72,7 @@ const Login = () => {
       } else {
         setError(false);
         console.log("loggedIn");
-        // localStorage.setItem("VoloLoggedIn", true);
+        localStorage.setItem("DashBoardUserLoggedIn", true);
         localStorage.setItem("DashBoardUser", JSON.stringify(data));
         navigate("/dashboard");
       }
