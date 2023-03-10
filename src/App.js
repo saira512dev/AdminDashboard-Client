@@ -14,9 +14,11 @@ import  Geography  from "./scenes/Geography";
 import  Overview from "./scenes/overview";
 import  Daily from "./scenes/daily";
 import  Monthly from "./scenes/monthly";
-import  Breakdown from "./scenes/breakdown"
-import  Admin from "./scenes/admin"
-import  Performance from "./scenes/performance"
+import  Breakdown from "./scenes/breakdown";
+import  Admin from "./scenes/admin";
+import  Performance from "./scenes/performance";
+import RequireAuth from "./middleware/RequireAuth";
+import RedirectIfAuthenticated from "./middleware/RedirectIfAuthenticated";
 
 function App() {
   const mode = useSelector((state) => state.global.mode)
@@ -26,9 +28,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes >
-          <Route path="/" element={<LogIn />} />
-          <Route element={<Layout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<RedirectIfAuthenticated Component={LogIn} />} />
+          <Route element={<RequireAuth Component={Layout} />}>
+            <Route path="/dashboard" element={< Dashboard />} />
             <Route path="/products" element={<Products />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/transactions" element={<Transactions />} />
