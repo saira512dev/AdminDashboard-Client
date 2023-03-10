@@ -29,7 +29,7 @@ const Navbar = ({
     const handleClick = event => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null)
     const handleLogout = () => {
-        const response = fetch(`${API_URL}/logout`, {
+        const response = fetch(`${API_URL}/general/logout`, {
             method: "GET",
             withCredentials: true,
             credentials: 'include',
@@ -38,6 +38,7 @@ const Navbar = ({
             },
         });
         localStorage.removeItem("DashBoardUser");
+        localStorage.removeItem("DashBoardUserLoggedIn");
         navigate("/");
     };
     
