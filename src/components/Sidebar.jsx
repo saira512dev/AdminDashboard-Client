@@ -9,7 +9,8 @@ import { Box,
     ListItemButton,
     ListItemIcon,
     Typography,
-    useTheme
+    useTheme,
+    useMediaQuery
 } from '@mui/material';
 import { SettingsOutlined,
     ChevronLeft,
@@ -102,6 +103,7 @@ const Sidebar = ({
     const [active, setActive ] = useState("");
     const navigate = useNavigate()
     const theme = useTheme()
+    const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
 
     useEffect(() => {
         setActive(pathname.substring(1))
@@ -176,7 +178,7 @@ const Sidebar = ({
                  </List>
 
              </Box>
-            <Box position="absolute" bottom="2rem">
+             {isNonMediumScreens && <Box position="absolute" bottom="2rem">
                 <Divider />
                 <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
                     <Box
@@ -188,7 +190,7 @@ const Sidebar = ({
                     borderRadius="50%"
                     sx={{ objectFit: "Cover"}} 
                    />
-                    <Box textAlign="left">
+                   <Box textAlign="left">
                         <Typography fontWeight="bold" fontSize="0.9rem" sx={{ color: theme.palette.secondary[100]}}>
                             {user.name}
                         </Typography>
@@ -198,7 +200,7 @@ const Sidebar = ({
                     </Box>
                     <SettingsOutlined sx={{color: theme.palette.secondary[300], fontSize: "25px"}} />
                 </FlexBetween>
-            </Box>
+            </Box>}
             </Drawer>
         )} 
     </Box>
