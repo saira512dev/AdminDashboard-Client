@@ -1,10 +1,11 @@
 import React from 'react';
 import { ResponsivePie } from "@nivo/pie";
-import {Box, Typography, useTheme } from "@mui/material";
+import {Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { useGetSalesQuery } from "../state/api"
 
 const BreakdownChart = ({ isDashboard = false }) => {
     const { data, isLoading } = useGetSalesQuery()
+    const isMobileScreen = useMediaQuery("(max-width: 600px)");
     const theme = useTheme()
     if(!data || isLoading) return "Loading..."
 
@@ -22,11 +23,17 @@ const BreakdownChart = ({ isDashboard = false }) => {
         color: colors[i]
     }))
   return (
-    <Box height={isDashboard ? "400px" : "100%"}
-    width={undefined}
-    minHeight={isDashboard ? "325px" : undefined}
-    minWidth={isDashboard ? "325px" : undefined}
-    position="relative">
+    <Box height="100%"
+    width="100%"
+    minHeight={isDashboard && isMobileScreen ? "300px" : isDashboard ? "320px" : undefined}
+    minWidth={isDashboard && isMobileScreen ? "320px"   : "100%"}
+    position="relative"
+   // display="flex"
+    //flex-direction="column"
+    //justifyContent="space-between"
+    //alignItems="center"
+    //gap="10px"
+    >
         <ResponsivePie
         data={formattedData}
         theme={{
@@ -63,6 +70,11 @@ const BreakdownChart = ({ isDashboard = false }) => {
           },
         }}
         colors={{ datum: "data.color" }}
+        // margin={
+        //   isDashboard && isMobileScreen ? {top: 0, bottom:210, left: 180, right: 100} :isDashboard ?
+        //      { top: 10, right: 80, bottom: 180, left: 10 }
+        //     : { top: 40, right: 80, bottom: 80, left: 80 }
+        // }
         margin={
           isDashboard
             ? { top: 40, right: 80, bottom: 100, left: 50 }
@@ -87,12 +99,13 @@ const BreakdownChart = ({ isDashboard = false }) => {
         }}
         legends={[
           {
-            anchor: "bottom",
-            direction: "row",
+            anchor: "bottom-right",
+            direction:"column",
             justify: false,
-            translateX: isDashboard ? 20 : 0,
-            translateY: isDashboard ? 50 : 56,
-            itemsSpacing: 0,
+            margin: "70px 0px",
+            translateX: isDashboard && isMobileScreen ? 0: isDashboard ? 20 : 10,
+            translateY: isDashboard ? 90 : 56,
+            itemsSpacing: 2,
             itemWidth: 85,
             itemHeight: 18,
             itemTextColor: "#999",

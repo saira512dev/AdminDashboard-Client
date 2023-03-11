@@ -163,7 +163,11 @@ function Dashboard() {
           <Box gridColumn="span 4"
               gridRow="span 3" backgroundColor={theme.palette.background.alt}
               p="1.5rem"
-              borderRadius="0.55rem">
+              borderRadius="0.55rem"
+              display= "flex"
+              justifyContent="center"
+              alignItems="center"
+              flexDirection="column">
                 <Typography variant="h6" sx={{ color: theme.palette.secondary[100]}}>
                   Sales By Category
                 </Typography>
