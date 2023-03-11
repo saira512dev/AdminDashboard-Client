@@ -65,7 +65,7 @@ function Dashboard() {
       <FlexBetween>
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
         <Box>
-          <Button sx={{
+          {/* <Button sx={{
             backgroundColor: theme.palette.secondary.light,
             color: theme.palette.background.alt,
             fontSize: "14px",
@@ -74,7 +74,7 @@ function Dashboard() {
           }}>
             <DownloadOutlined sx={{mr: "10px"}} />
             Download Reports
-          </Button>
+          </Button> */}
         </Box>
       </FlexBetween>
       <Box mt="20px"
