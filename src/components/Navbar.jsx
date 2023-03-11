@@ -12,7 +12,8 @@ import FlexBetween from "./FlexBetween";
 import { useDispatch  } from "react-redux";
 import { setMode } from "../state";
 import profileImage from "../assets/profile.png";
-import { AppBar, useTheme, Toolbar, IconButton, InputBase, Button,Box, Typography, Menu, MenuItem} from "@mui/material"
+import { AppBar, useTheme, Toolbar, IconButton, InputBase, Button,Box, Typography, Menu, MenuItem, useMediaQuery,
+} from "@mui/material"
 import API_URL from '../config/config'
 
 const Navbar = ({
@@ -23,6 +24,7 @@ const Navbar = ({
     const dispatch = useDispatch();
     const theme = useTheme()
     const navigate = useNavigate();
+    const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
 
     const [anchorEl, setAnchorEl] = useState(null);
     const isOpen = Boolean(anchorEl);
@@ -54,7 +56,7 @@ const Navbar = ({
                 <IconButton onClick = {() => setIsSidebarOpen(!isSidebarOpen)} >
                     <MenuIcon />
                 </IconButton>
-                <FlexBetween backgroundColor={theme.palette.background.alt}
+                {isNonMediumScreens && <FlexBetween backgroundColor={theme.palette.background.alt}
                 borderRadius="9px"
                 gap="3rem"
                 p="0.1rem 1.5rem"
@@ -63,7 +65,7 @@ const Navbar = ({
                     <IconButton>
                         <Search />
                     </IconButton>
-                </FlexBetween>
+                </FlexBetween>}
             </FlexBetween>
             {/* RIGHT SIDE */}
 
