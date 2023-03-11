@@ -6,6 +6,7 @@ import { useGetSalesQuery } from "../state/api"
 const BreakdownChart = ({ isDashboard = false }) => {
     const { data, isLoading } = useGetSalesQuery()
     const isMobileScreen = useMediaQuery("(max-width: 600px)");
+    const isXsSmallScreen = useMediaQuery("(max-width: 376px)");
     const theme = useTheme()
     if(!data || isLoading) return "Loading..."
 
@@ -23,10 +24,10 @@ const BreakdownChart = ({ isDashboard = false }) => {
         color: colors[i]
     }))
   return (
-    <Box height="100%"
-    width="100%"
-    minHeight={isDashboard && isMobileScreen ? "300px" : isDashboard ? "320px" : undefined}
-    minWidth={isDashboard && isMobileScreen ? "320px"   : "100%"}
+    <Box height={isXsSmallScreen ? "300px" : !isDashboard && isMobileScreen ? "500px" :  "90%"}
+    width={isXsSmallScreen ? "250px" :undefined} //sx={{background: "yellow"}}
+    minHeight={isDashboard  ? "325px" : isMobileScreen ? "350px" : "50%"}
+    minWidth={isXsSmallScreen ? "250px" : isDashboard || isMobileScreen ? "325px" : "50%"}
     position="relative"
    // display="flex"
     //flex-direction="column"
@@ -75,7 +76,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
         //      { top: 10, right: 80, bottom: 180, left: 10 }
         //     : { top: 40, right: 80, bottom: 80, left: 80 }
         // }
-        margin={
+        margin={isXsSmallScreen ? { top: 20, right: 30, bottom: 120, left: 50 } :
           isDashboard
             ? { top: 40, right: 80, bottom: 100, left: 50 }
             : { top: 40, right: 80, bottom: 80, left: 80 }
@@ -88,7 +89,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
           from: "color",
           modifiers: [["darker", 0.2]],
         }}
-        enableArcLinkLabels={!isDashboard}
+        enableArcLinkLabels={!isDashboard && !isXsSmallScreen}
         arcLinkLabelsTextColor={theme.palette.secondary[200]}
         arcLinkLabelsThickness={2}
         arcLinkLabelsColor={{ from: "color" }}
@@ -104,7 +105,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
             justify: false,
             margin: "70px 0px",
             translateX: isDashboard && isMobileScreen ? 0: isDashboard ? 20 : 10,
-            translateY: isDashboard ? 90 : 56,
+            translateY: isXsSmallScreen ? 100 : isDashboard ? 90 : 56,
             itemsSpacing: 2,
             itemWidth: 85,
             itemHeight: 18,
@@ -126,7 +127,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
       />
       <Box
         position="absolute"
-        top="50%"
+        top={isXsSmallScreen ? "40%" : "50%"}
         left="50%"
         color={theme.palette.secondary[400]}
         textAlign="center"
